@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript" src="/static/actors.js" defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -55,6 +56,69 @@
                 navigation.
             </p>
         </div>
+        <div>
+            <form action="/search" method="POST">
+                <div id="min_numb">
+                    <input name="min_numb" id="min_numb" placeholder="Min number of seasons">
+                    <button type="submit">Search min/max</button>
+                </div>
+            </form>
+            <form action="/search-shows" method="POST">
+                <div id="search_word">
+                    <input name="search_word" id="search_word" placeholder="Search shows">
+                    <button type="submit">Search shows</button>
+                </div>
+            </form>
+            <form action="/avg-actor" method="POST">
+                <div id="user_date">
+                    <input name="user_date" id="user_date" placeholder="GIVE US DATE">
+                    <button type="submit">Search shows</button>
+                </div>
+            </form>
+            <form action="/ratings" method="POST">
+                <div id="genre">
+                    <input name="my_genre" id="my_genre" placeholder="my_genre">
+                    <button type="submit">Search my_genre</button>
+                </div>
+            </form>
+            <form action="/most-active">
+                <div id="most-active">
+                    <button type="submit">Most active Actors</button>
+                </div>
+            </form>
+            <form action="/shows-runtime">
+                <div id="shows-runtime">
+                    <button type="submit">shows-runtime</button>
+                </div>
+            </form>
+        </div>
+         <div class="card">
+            <h2>Top 10 actors</h2>
+             <table class="top_actors">
+                 <thead>
+                 <tr>
+                     <th>Name</th>
+                     <th>Number of shows</th>
+                 <tr>
+                 </thead>
+                <tbody class="actor_names">
+                 {% for actor in actors %}
+                 <tr class="actor_names">
+                     {% if loop.index == 1 %}
+                         <td class="actor_names">{{ actor.name }} <button id="myBtn"> <img src="/static/images/gold.png" style="width: 50px; height: 50px"></button></td>
+                     {% elif loop.index == 2 %}
+                      <td class="actor_names">{{ actor.name }} <button id="myBtn"> <img src="/static/images/silver.png" style="width: 50px; height: 50px"></button></td>
+                     {% elif loop.index == 3 %}
+                      <td class="actor_names">{{ actor.name }} <button id="myBtn"> <img src="/static/images/bronze.png" style="width: 50px; height: 50px"></button></td>
+                     {% else %}
+                      <td class="actor_names">{{ actor.name }}</td>
+                     {% endif %}
+                     <td class="actor_names">{{ actor.number_of_roles }}</td>
+                 </tr>
+                 {% endfor %}
+                </tbody>
+             </table>
+         </div>
         <div class="card">
             <ul>
                 {% for show in shows %}
@@ -65,8 +129,21 @@
             </ul>
         </div>
     </section>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+  <iframe width="560" height="400" src="https://www.youtube.com/embed/1_Z5q152GSQ" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+  </iframe>
+  </div>
+
+</div>
     <footer>
-        Copyright, bla-bla
+        This will turn me FUCKING CRAZY
     </footer>
 </div>
 <div class="background">
